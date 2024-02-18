@@ -1,5 +1,5 @@
 // signIn.spec.js
-import SignInPage from '../pages/signInPage';
+import SignInPage from "./pages/signInPage";
 
 describe('Sign In', () => {
   const signInPage = new SignInPage();
@@ -9,12 +9,19 @@ describe('Sign In', () => {
   });
 
   it('should sign in with valid credentials', () => {
-    signInPage.signIn('username', 'password');
-    cy.url().should('include', '/dashboard');
+    cy.fixture('users').then((userData) => {
+      signInPage.signIn(userData.validUser.email, userData.validUser.password);
+    });
+    cy.url().should('include', '/customer/account/');
+    cy.contains('john2@g.com').should('be.visible');
+
+
   });
 
   it('should display error message for invalid credentials', () => {
-    signInPage.signIn('invalidusername', 'invalidpassword');
-    cy.contains('Invalid username or password').should('be.visible');
+    cy.fixture('users').then((userData) => {
+      signInPage.signIn(userData.invalidUser.email, userData.invalidUser.password);
+    });
+    cy.contains('The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.').should('be.visible');
   });
 });

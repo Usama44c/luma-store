@@ -1,17 +1,19 @@
 // createAccountPage.js
 class CreateAccountPage {
     visit() {
-      cy.visit('/create-account');
+      cy.visit('/customer/account/create/');
     }
   
-    fillForm(name, email, password) {
-      cy.get('#name').type(name);
-      cy.get('#email').type(email);
+    fillForm(fname,lname, email, password,confirmpassword ) {
+      cy.get('#firstname').type(fname);
+      cy.get('#lastname').type(lname);
+      cy.get('#email_address').type(email);
       cy.get('#password').type(password);
+      cy.get('#password-confirmation').type(confirmpassword);
     }
   
     submitForm() {
-      cy.get('button[type="submit"]').click();
+      cy.get('#form-validate > .actions-toolbar > div.primary > .action').click();
     }
   }
   

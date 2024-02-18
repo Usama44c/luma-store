@@ -1,13 +1,13 @@
 // signInPage.js
 class SignInPage {
     visit() {
-      cy.visit('/signin');
+      cy.visit('/customer/account/login');
     }
   
-    signIn(username, password) {
-      cy.get('#username').type(username);
-      cy.get('#password').type(password);
-      cy.get('button[type="submit"]').click();
+    signIn(email, password) {
+      cy.get('#email').type(email);
+      cy.get('#pass').type(password);
+      cy.get('#send2').click();
     }
   }
   
