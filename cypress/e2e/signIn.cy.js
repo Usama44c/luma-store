@@ -15,12 +15,6 @@ describe('Sign In', () => {
     cy.url().should('include', '/customer/account/');
     cy.contains('john2@g.com').should('be.visible');
 
-
-
-
-    
-
-
   });
 
   it('should display error message for invalid credentials', () => {
