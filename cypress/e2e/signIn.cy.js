@@ -16,6 +16,7 @@ describe('Sign In', () => {
     cy.contains('john2@g.com').should('be.visible');
 
   });
+  
 
   it('should display error message for invalid credentials', () => {
     cy.fixture('users').then((userData) => {
